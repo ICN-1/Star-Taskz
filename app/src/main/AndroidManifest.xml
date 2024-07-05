@@ -29,6 +29,21 @@
         android:theme="@style/Theme.Taskz"
         tools:targetApi="31">
         <activity
+            android:name=".SelectPlatformSync"
+            android:exported="false" />
+        <activity
+            android:name=".GithubSyncDircetions"
+            android:exported="false" />
+        <activity
+            android:name=".WebviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SyncGithub"
+            android:exported="false" />
+        <activity
+            android:name=".PlatformSync"
+            android:exported="false" />
+        <activity
             android:name=".OnboardingScreen"
             android:exported="false" />
 

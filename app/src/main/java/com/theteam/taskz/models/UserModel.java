@@ -23,7 +23,7 @@ public class UserModel {
 
     public UserModel(Context context){
         this.context = context;
-        SharedPreferences preferences = context.getSharedPreferences("GLOBAL", Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences("userData", Context.MODE_PRIVATE);
         final String jsonString = preferences.getString("userdata", "{}");
         Gson gson = new Gson();
         Type mapType = new TypeToken<HashMap<String, Object>>(){}.getType();
@@ -31,14 +31,14 @@ public class UserModel {
     }
 
     public static void saveUserData(HashMap<String,Object> map, Context context){
-        SharedPreferences preferences = context.getSharedPreferences("GLOBAL", Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences("userData", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         Type mapType = new TypeToken<HashMap<String, Object>>(){}.getType();
 
         preferences.edit().putString("userdata",gson.toJson(map, mapType)).apply();
     }
     public static void clearUserData(Context context){
-        SharedPreferences preferences = context.getSharedPreferences("GLOBAL", Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences("userData", Context.MODE_PRIVATE);
 
         preferences.edit().remove("userdata").apply();
     }
