@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:background="@drawable/github_signup_button_background"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:paddingHorizontal="@dimen/medium_value_size"
+    android:paddingVertical="@dimen/regular_value_size"
+    android:layout_height="wrap_content"
+    android:minHeight="55dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/sync_github_activity">
+    <ImageView
+        android:layout_width="@dimen/medium_icon_size"
+        android:layout_height="@dimen/medium_icon_size"
+        android:layout_marginEnd="@dimen/regular_value_size"
+        android:scaleType="fitCenter"
+        app:tint="#9C27B0"
+        android:src="@drawable/github_logo"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Github"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="?attr/colorPrimary"
+        tools:ignore="HardcodedText" />
+
+
+</LinearLayout>

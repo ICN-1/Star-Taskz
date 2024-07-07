@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="?attr/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".PlatformSync">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sync With Other Platforms"
+            android:textColor="?attr/colorPrimary"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginBottom="@dimen/large_value_size"
+            android:textSize="@dimen/large_font_size"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="60dp"
+            android:orientation="horizontal">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/google_calendar_icon"
+                app:civ_border_color="?attr/background"
+                app:civ_border_width="6dp"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/github"
+                android:translationX="-30dp"
+                app:civ_border_color="?attr/background"
+                app:civ_border_width="6dp"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/notion_icon"
+                android:translationX="-60dp"
+                app:civ_border_color="?attr/background"
+                app:civ_border_width="6dp"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/jira_icon"
+                android:translationX="-90dp"
+                app:civ_border_color="?attr/background"
+                app:civ_border_width="6dp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In Star Taskz, you can sync your tasks\nIn your Google Calendar, Github Account,\nNotion and Jira."
+            android:gravity="center"
+            android:textColor="?attr/colorSecondary"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginTop="@dimen/extra_large_value_size"
+            android:textSize="12sp"/>
+    </LinearLayout>
+    <com.theteam.taskz.view_models.LoadableButton
+        android:id="@+id/get_started"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/medium_value_size"
+        android:layout_marginBottom="@dimen/extra_large_value_size"
+        app:text="Get Started"/>
+
+
+</LinearLayout>

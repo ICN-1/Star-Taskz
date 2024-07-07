@@ -7,98 +7,432 @@
     android:background="?attr/background"
     android:layout_height="match_parent"
     tools:context=".CreateTask">
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:scrollbars="vertical"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/title_text"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create a Task."
-            android:layout_marginStart="@dimen/large_value_size"
-            android:textSize="@dimen/large_font_size"
-            android:textColor="?attr/colorPrimary"
-            android:layout_marginBottom="@dimen/small_value_size"
-            android:fontFamily="@font/poppins_semibold"
-            tools:ignore="HardcodedText" />
-        <TextView
-            android:id="@+id/subtitle_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Enter the following details."
-            android:layout_marginStart="@dimen/large_value_size"
-            android:textSize="@dimen/regular_font_size"
-            android:textColor="?attr/colorSecondary"
-            android:layout_marginBottom="@dimen/extra_large_value_size"
-            android:fontFamily="@font/poppins_regular"
-            tools:ignore="HardcodedText" />
-        <com.theteam.taskz.view_models.TextInputFormField
-            android:id="@+id/task_name_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/large_value_size"
-            android:layout_marginTop="@dimen/large_value_size"
-            android:layout_marginBottom="@dimen/large_value_size"
-            app:fontFamily="@font/poppins_regular"
-            app:hint="Task Name or Description"
-            app:isPassword="false"
-            android:inputType="text"
-            app:hintColor="?attr/colorSecondary"
-            app:prefixIcon="@drawable/info"/>
-        <com.theteam.taskz.view_models.TextInputFormField
-            android:id="@+id/task_date_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/large_value_size"
-            android:layout_marginBottom="@dimen/large_value_size"
-            app:fontFamily="@font/poppins_regular"
-            app:hint="Select Day (Optional)"
-            app:suffixIcon="@drawable/go"
-            app:isPassword="false"
-            android:inputType="none"
-            app:readOnly="true"
-            app:hintColor="?attr/colorSecondary"
-            app:prefixIcon="@drawable/calendar"/>
-        <com.theteam.taskz.view_models.TextInputFormField
-            android:id="@+id/task_time_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/large_value_size"
-            android:layout_marginBottom="@dimen/large_value_size"
-            app:fontFamily="@font/poppins_regular"
-            app:hint="Select Time"
-            app:suffixIcon="@drawable/go"
-            app:isPassword="false"
-            android:inputType="none"
-            app:readOnly="true"
-            app:hintColor="?attr/colorSecondary"
-            app:prefixIcon="@drawable/pomodoro"/>
-        <com.theteam.taskz.view_models.TextInputFormField
-            android:id="@+id/task_category_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/large_value_size"
-            android:layout_marginBottom="@dimen/extra_large_value_size"
-            app:fontFamily="@font/poppins_regular"
-            app:hint="Select Category"
-            app:suffixIcon="@drawable/go"
-            app:isPassword="false"
-            android:inputType="none"
-            app:readOnly="true"
-            app:hintColor="?attr/colorSecondary"
-            app:prefixIcon="@drawable/hashtag_icon"/>
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/large_value_size"
+                android:paddingHorizontal="@dimen/large_value_size"
+                android:scrollbars="vertical"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="@dimen/medium_icon_size"
+                    android:layout_height="@dimen/medium_icon_size"
+                    android:layout_marginTop="@dimen/regular_value_size"
+                    android:src="@drawable/back"
+                    android:layout_marginBottom="@dimen/medium_value_size"
+                    app:tint="@color/themeColor"/>
+                <TextView
+                    android:id="@+id/title_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Create a new plan"
+                    android:textSize="@dimen/extra_large_font_size"
+                    android:textColor="?attr/colorPrimary"
+                    android:layout_marginBottom="@dimen/small_value_size"
+                    android:fontFamily="@font/poppins_bold"
+                    tools:ignore="HardcodedText" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Task Title"
+                    android:layout_marginTop="@dimen/large_value_size"
+                    android:textSize="@dimen/regular_font_size"
+                    android:paddingBottom="@dimen/small_value_size"
+                    android:textColor="?attr/colorSecondary"
+                    android:fontFamily="@font/poppins_semibold"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/task_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="?attr/colorTertiary"
+                    android:textSize="@dimen/large_font_size"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColorHint="?attr/colorSecondary"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="@dimen/medium_value_size"
+                    android:textColor="?attr/colorPrimary"
+                    android:text="Finance App Design"
+                    android:lines="1"
+                    android:layout_marginBottom="@dimen/medium_value_size"
+                    android:hint="Enter Task name"
+                    tools:ignore="HardcodedText,TextFields" />
 
-        <com.theteam.taskz.view_models.LoadableButton
-            android:id="@+id/loadable_button"
-            android:layout_marginHorizontal="@dimen/medium_value_size"
-            android:layout_width="match_parent"
-            app:text="ADD TASK"
-            app:textColor="@color/white"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:paddingBottom="12sp"
+                    android:textSize="@dimen/regular_font_size"
+                    android:textColor="?attr/colorSecondary"
+                    android:fontFamily="@font/poppins_semibold"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/task_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="?attr/colorTertiary"
+                    android:textSize="@dimen/small_font_size"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColorHint="?attr/colorSecondary"
+                    android:paddingTop="@dimen/small_value_size"
+                    android:paddingBottom="@dimen/medium_value_size"
+                    android:textColor="?attr/colorSecondary"
+                    android:text="Join us in solving the challenges that the food industry is facing. Free of charge. Grow your network, get expert advice and join the meeting. Join the meeting. "
+                    android:layout_marginBottom="@dimen/medium_value_size"
+                    android:hint="Enter task description"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/collaborators_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Collaborators"
+                    android:paddingBottom="12sp"
+                    android:textSize="@dimen/regular_font_size"
+                    android:textColor="?attr/colorSecondary"
+                    android:fontFamily="@font/poppins_semibold"
+                    tools:ignore="HardcodedText" />
+                <LinearLayout
+                    android:id="@+id/collaborators_lis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/medium_value_size"
+                    android:orientation="horizontal">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="@dimen/medium_icon_size"
+                        android:layout_height="@dimen/medium_icon_size"
+                        android:layout_marginHorizontal="@dimen/small_value_size"
+                        android:src="@drawable/star"/>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="@dimen/medium_icon_size"
+                        android:layout_height="@dimen/medium_icon_size"
+                        android:layout_marginHorizontal="@dimen/small_value_size"
+                        android:src="@drawable/profile_1"/>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="@dimen/medium_icon_size"
+                        android:layout_height="@dimen/medium_icon_size"
+                        android:layout_marginHorizontal="@dimen/small_value_size"
+                        android:src="@drawable/profile_2"/>
+                    <ImageView
+                        android:layout_width="@dimen/medium_icon_size"
+                        android:layout_height="@dimen/medium_icon_size"
+                        android:layout_marginHorizontal="@dimen/regular_value_size"
+                        android:src="@drawable/add"
+                        app:tint="?attr/colorPrimary"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/medium_value_size"
+                android:background="?attr/colorTertiary"
+                android:paddingHorizontal="@dimen/large_value_size"
+                android:gravity="center"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/medium_value_size"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/start_date_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:backgroundTint="?attr/background"
+                        android:background="@drawable/rounded_corner_background"
+                        android:paddingHorizontal="@dimen/medium_value_size"
+                        android:paddingVertical="10sp">
+                        <ImageView
+                            android:layout_width="27dp"
+                            android:layout_height="27dp"
+                            app:tint="@color/themeColor"
+                            android:layout_marginRight="@dimen/medium_value_size"
+                            android:src="@drawable/calendar"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|start"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Date"
+                                android:textSize="@dimen/small_font_size"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="?attr/colorSecondary"/>
+                            <TextView
+                                android:id="@+id/start_date_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Today"
+                                android:textSize="@dimen/regular_font_size"
+                                android:fontFamily="@font/poppins_bold"
+                                android:layout_marginBottom="@dimen/small_value_size"
+                                android:textColor="?attr/colorPrimary"/>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/start_time_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="@dimen/medium_value_size"
+                        android:gravity="center"
+                        android:backgroundTint="?attr/background"
+                        android:background="@drawable/rounded_corner_background"
+                        android:paddingHorizontal="@dimen/medium_value_size"
+                        android:paddingVertical="10sp">
+                        <ImageView
+                            android:layout_width="27dp"
+                            android:layout_height="27dp"
+                            app:tint="@color/themeColor"
+                            android:scaleType="centerCrop"
+                            android:layout_marginRight="@dimen/medium_value_size"
+                            android:src="@drawable/time"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|start"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Time"
+                                android:textSize="@dimen/small_font_size"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="?attr/colorSecondary"/>
+                            <TextView
+                                android:id="@+id/start_time_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="11:45 AM"
+                                android:textSize="@dimen/regular_font_size"
+                                android:fontFamily="@font/poppins_bold"
+                                android:layout_marginBottom="@dimen/small_value_size"
+                                android:textColor="?attr/colorPrimary"/>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/end_date_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:backgroundTint="?attr/background"
+                        android:background="@drawable/rounded_corner_background"
+                        android:paddingHorizontal="@dimen/medium_value_size"
+                        android:paddingVertical="10sp">
+                        <ImageView
+                            android:layout_width="27dp"
+                            android:layout_height="27dp"
+                            app:tint="@color/red"
+                            android:layout_marginRight="@dimen/medium_value_size"
+                            android:src="@drawable/calendar"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|start"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="End Date"
+                                android:textSize="@dimen/small_font_size"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="?attr/colorSecondary"/>
+                            <TextView
+                                android:id="@+id/end_date_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="---"
+                                android:textSize="@dimen/regular_font_size"
+                                android:fontFamily="@font/poppins_bold"
+                                android:layout_marginBottom="@dimen/small_value_size"
+                                android:textColor="?attr/colorPrimary"/>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/end_time_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="@dimen/medium_value_size"
+                        android:gravity="center"
+                        android:backgroundTint="?attr/background"
+                        android:background="@drawable/rounded_corner_background"
+                        android:paddingHorizontal="@dimen/medium_value_size"
+                        android:paddingVertical="10sp">
+                        <ImageView
+                            android:layout_width="27dp"
+                            android:layout_height="27dp"
+                            app:tint="@color/red"
+                            android:scaleType="centerCrop"
+                            android:layout_marginRight="@dimen/medium_value_size"
+                            android:src="@drawable/time"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|start"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="End Time"
+                                android:textSize="@dimen/small_font_size"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="?attr/colorSecondary"/>
+                            <TextView
+                                android:id="@+id/end_time_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="---"
+                                android:textSize="@dimen/regular_font_size"
+                                android:fontFamily="@font/poppins_bold"
+                                android:layout_marginBottom="@dimen/small_value_size"
+                                android:textColor="?attr/colorPrimary"/>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:paddingTop="@dimen/medium_value_size"
+                android:paddingBottom="@dimen/regular_value_size"
+                android:paddingLeft="@dimen/large_value_size"
+                android:textSize="@dimen/regular_font_size"
+                android:textColor="?attr/colorSecondary"
+                android:fontFamily="@font/poppins_semibold"
+                tools:ignore="HardcodedText" />
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:scrollbarThumbHorizontal="@android:color/transparent"
+                android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/small_value_size"
+                    android:paddingHorizontal="@dimen/large_value_size"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/work_category"
+                        android:layout_marginHorizontal="@dimen/regular_value_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/small_rounded_corner_background"
+                        android:backgroundTint="@color/redTransparent"
+                        android:paddingHorizontal="@dimen/medium_value_size"
+                        android:paddingVertical="@dimen/small_value_size">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/red"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Work"
+                            android:textSize="@dimen/small_font_size"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/personal_category"
+                        android:layout_marginHorizontal="@dimen/regular_value_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/small_rounded_corner_background"
+                        android:backgroundTint="@color/blueTransparent"
+                        android:paddingHorizontal="@dimen/medium_value_size"
+                        android:paddingVertical="@dimen/small_value_size">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/blue"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Personal"
+                            android:textSize="@dimen/small_font_size"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/study_category"
+                        android:layout_marginHorizontal="@dimen/regular_value_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/small_rounded_corner_background"
+                        android:backgroundTint="@color/highlightColor"
+                        android:paddingHorizontal="@dimen/medium_value_size"
+                        android:paddingVertical="@dimen/small_value_size">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/themeColor"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Study"
+                            android:textSize="@dimen/small_font_size"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/uncategorized_category"
+                        android:layout_marginHorizontal="@dimen/regular_value_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/small_rounded_corner_background"
+                        android:backgroundTint="@color/yellowTransparent"
+                        android:paddingHorizontal="@dimen/medium_value_size"
+                        android:paddingVertical="@dimen/small_value_size">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/yellow"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Uncategorized"
+                            android:textSize="@dimen/small_font_size"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+            <com.theteam.taskz.view_models.LoadableButton
+                android:layout_marginTop="@dimen/large_value_size"
+                android:id="@+id/loadable_button"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/large_value_size"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                app:text="Create Task"
+                app:textColor="@color/white"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
 
 
 

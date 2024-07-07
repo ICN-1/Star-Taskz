@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
                 new Timer().schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        Intent i = new Intent(getApplicationContext(),model.isExists()? HomeActivity.class: LoginActivity.class);
+                        Intent i = new Intent(getApplicationContext(),model.isExists()? HomeActivity.class: PlatformSync.class);
                         startActivity(i);
                         cancel();
                         finish();
@@ -230,20 +230,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onInit(int i) {
                 if(i == TextToSpeech.SUCCESS){
-                    for(final Voice v: AlarmManager.speech.getVoices()){
-                        Log.v("VOICES", v.getName());
-                    }
-                    final int res = AlarmManager.speech.setLanguage(new Locale("en", "US"));
-                    AlarmManager.speech.setPitch(0.3f);
-                    AlarmManager.speech.setSpeechRate(1.5f);
-
-                    if(res == TextToSpeech.LANG_MISSING_DATA || res==TextToSpeech.LANG_NOT_SUPPORTED){
-                        AlarmManager.speech.setLanguage(Locale.ENGLISH);
-                        AlarmManager.speech.setVoice(new Voice("eng-USA",Locale.ENGLISH, Voice.QUALITY_VERY_HIGH, Voice.LATENCY_VERY_LOW,true, null));
-                    }
-                    else{
-                        }
-//                    AlarmManager.speech.speak("Welcome",TextToSpeech.QUEUE_ADD, null,null);
+//                    AlarmManager.speech.setPitch(0.3f);
+                    AlarmManager.speech.setSpeechRate(1.4f);
 
                 }
                 else{

@@ -50,135 +50,134 @@ public class CreateTask extends AppCompatActivity{
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_create_task);
 
-        title_text = findViewById(R.id.title_text);
-        subtitle_text = findViewById(R.id.subtitle_text);
-        taskName = findViewById(R.id.task_name_form);
-        taskDate = findViewById(R.id.task_date_form);
-        taskTime = findViewById(R.id.task_time_form);
-        taskCategory = findViewById(R.id.task_category_form);
-        button = findViewById(R.id.loadable_button);
-
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+//        title_text = findViewById(R.id.title_text);
+//        subtitle_text = findViewById(R.id.subtitle_text);
+//        taskName = findViewById(R.id.task_name_form);
+//        taskDate = findViewById(R.id.task_date_form);
+//        taskTime = findViewById(R.id.task_time_form);
+//        taskCategory = findViewById(R.id.task_category_form);
+//        button = findViewById(R.id.loadable_button);
+
         // To check if user wants to edit a task:
         // This is done because 'data' is only passed when a user wants to edit a task.
-        if(getIntent().hasExtra("data")){
-            Type mapType = new TypeToken<HashMap<String,Object>>(){}.getType();
-            HashMap<String,Object> map = new Gson().fromJson(getIntent().getStringExtra("data"), mapType);
+//        if(getIntent().hasExtra("data")){
+//            Type mapType = new TypeToken<HashMap<String,Object>>(){}.getType();
+//            HashMap<String,Object> map = new Gson().fromJson(getIntent().getStringExtra("data"), mapType);
+//
+//            TaskModel model = new TaskModel(map);
+//            final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM dd", Locale.getDefault());
+//            final SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+//
+//            calendar = model.date;
+//            taskName.setText(model.name);
+//            taskTime.setText(timeFormat.format(calendar.getTime()));
+//            taskDate.setText(dateFormat.format(calendar.getTime()));
+//            taskCategory.setText(model.category);
+//
+//            title_text.setText("Edit your Task.");
+//            subtitle_text.setText("Edit the following details");
+//            button.setText("EDIT TASK");
+//
+//        }
+//
+//        taskDate.setOnClickListener(view -> {
+//            showDatePickerDialog();
+//        });
+//        taskTime.setOnClickListener(view -> {
+//            showTimePickerDialog();
+//        });
+//        taskCategory.setOnClickListener(view -> {
+//            showCategoryDialog();
+//        });
 
-            TaskModel model = new TaskModel(map);
-            final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM dd", Locale.getDefault());
-            final SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-
-            calendar = model.date;
-            taskName.setText(model.name);
-            taskTime.setText(timeFormat.format(calendar.getTime()));
-            taskDate.setText(dateFormat.format(calendar.getTime()));
-            taskCategory.setText(model.category);
-
-            title_text.setText("Edit your Task.");
-            subtitle_text.setText("Edit the following details");
-            button.setText("EDIT TASK");
-
-        }
-
-        taskDate.setOnClickListener(view -> {
-            showDatePickerDialog();
-        });
-        taskTime.setOnClickListener(view -> {
-            showTimePickerDialog();
-        });
-        taskCategory.setOnClickListener(view -> {
-            showCategoryDialog();
-        });
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                button.startLoading();
-                disableAll();
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        button.stopLoading();
-                        enableAll();
-                        if(taskName.getText().trim().isEmpty()){
-                            showMessage("Task Name is Empty");
-                            return;
-                        }
-                        if(taskTime.getText().trim().isEmpty()){
-                            showMessage("Time of task is Empty");
-                            return;
-                        }
-                        if(taskCategory.getText().trim().isEmpty()){
-                            showMessage("Task Category is Empty");
-                            return;
-                        }
-                        TaskManager holder = new TaskManager(CreateTask.this);
-
-                        // To check if user wants to edit a task:
-                        // This is done because 'data' is only passed when a user wants to edit a task.
-                        if(getIntent().hasExtra("data")){
-                            Type mapType = new TypeToken<HashMap<String,Object>>(){}.getType();
-                            HashMap<String,Object> taskJson = new Gson().fromJson(getIntent().getStringExtra("data"), mapType);
-                            taskJson.put("name", taskName.getText().trim());
-                            taskJson.put("time", calendar.getTimeInMillis());
-                            taskJson.put("category", taskCategory.getText().trim());
-                            taskJson.put("status", TaskStatus.Pending.name());
-
-                            TaskModel model = new TaskModel(taskJson);
-
-                            holder.updateTask(model, true);
-
-                            finish();
-
-                        }
-                        else{
-                            HashMap<String,Object> taskJson = new HashMap<>();
-                            //To set the is to "#TASK-(The index the model would have when it inserted into the list)
-                            taskJson.put("id", "#TASK-" + holder.getTasks().size());
-                            taskJson.put("globalId", taskJson.get("id"));
-                            taskJson.put("name", taskName.getText().trim());
-                            taskJson.put("time", calendar.getTimeInMillis());
-                            taskJson.put("category", taskCategory.getText().trim());
-                            taskJson.put("notifId", String.valueOf((int) AlarmManager.NOTIF_ID));
-                            AlarmManager.NOTIF_ID++;
-
-                            TaskModel model = new TaskModel(taskJson);
-                            holder.addTask(model, true);
-                            finish();
-                        }
-
-
-
-
-
-                    }
-                }, 2500);
-            }
-        });
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                button.startLoading();
+//                disableAll();
+//
+//                Handler handler = new Handler();
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        button.stopLoading();
+//                        enableAll();
+//                        if(taskName.getText().trim().isEmpty()){
+//                            showMessage("Task Name is Empty");
+//                            return;
+//                        }
+//                        if(taskTime.getText().trim().isEmpty()){
+//                            showMessage("Time of task is Empty");
+//                            return;
+//                        }
+//                        if(taskCategory.getText().trim().isEmpty()){
+//                            showMessage("Task Category is Empty");
+//                            return;
+//                        }
+//                        TaskManager holder = new TaskManager(CreateTask.this);
+//
+//                        // To check if user wants to edit a task:
+//                        // This is done because 'data' is only passed when a user wants to edit a task.
+//                        if(getIntent().hasExtra("data")){
+//                            Type mapType = new TypeToken<HashMap<String,Object>>(){}.getType();
+//                            HashMap<String,Object> taskJson = new Gson().fromJson(getIntent().getStringExtra("data"), mapType);
+//                            taskJson.put("name", taskName.getText().trim());
+//                            taskJson.put("time", calendar.getTimeInMillis());
+//                            taskJson.put("category", taskCategory.getText().trim());
+//                            taskJson.put("status", TaskStatus.Pending.name());
+//
+//                            TaskModel model = new TaskModel(taskJson);
+//
+//                            holder.updateTask(model, true);
+//
+//                            finish();
+//
+//                        }
+//                        else{
+//                            HashMap<String,Object> taskJson = new HashMap<>();
+//                            //To set the is to "#TASK-(The index the model would have when it inserted into the list)
+//                            taskJson.put("id", "#TASK-" + holder.getTasks().size());
+//                            taskJson.put("globalId", taskJson.get("id"));
+//                            taskJson.put("name", taskName.getText().trim());
+//                            taskJson.put("time", calendar.getTimeInMillis());
+//                            taskJson.put("category", taskCategory.getText().trim());
+//                            taskJson.put("notifId", String.valueOf((int) AlarmManager.NOTIF_ID));
+//                            AlarmManager.NOTIF_ID++;
+//
+//                            TaskModel model = new TaskModel(taskJson);
+//                            holder.addTask(model, true);
+//                            finish();
+//                        }
+//
+//
+//
+//
+//
+//                    }
+//                }, 2500);
+//            }
+//        });
 
 
     }
 
     void disableAll(){
-        taskName.setEnabled(false);
-        taskCategory.setEnabled(false);
-        taskDate.setEnabled(false);
-        taskTime.setEnabled(false);
+//        taskName.setEnabled(false);
+//        taskCategory.setEnabled(false);
+//        taskDate.setEnabled(false);
+//        taskTime.setEnabled(false);
     }
     void enableAll(){
-        taskName.setEnabled(true);
-        taskCategory.setEnabled(true);
-        taskDate.setEnabled(true);
-        taskTime.setEnabled(true);
+//        taskName.setEnabled(true);
+//        taskCategory.setEnabled(true);
+//        taskDate.setEnabled(true);
+//        taskTime.setEnabled(true);
     }
     void showDatePickerDialog(){
         final Calendar _calendar = Calendar.getInstance();
@@ -198,9 +197,9 @@ public class CreateTask extends AppCompatActivity{
                 calendar.set(Calendar.MONTH, _month);
                 calendar.set(Calendar.DAY_OF_MONTH, _day);
 
-                showMessage("date picked");
-                taskDate.setText(new SimpleDateFormat("EEE, MMM dd", Locale.getDefault()).format(calendar.getTime()));
-                taskTime.setText("");
+//                showMessage("date picked");
+//                taskDate.setText(new SimpleDateFormat("EEE, MMM dd", Locale.getDefault()).format(calendar.getTime()));
+//                taskTime.setText("");
 
             }
         }, year,month,day);
@@ -218,9 +217,9 @@ public class CreateTask extends AppCompatActivity{
         TimePickerDialog timePickerDialog = new TimePickerDialog(CreateTask.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                calendar.set(Calendar.HOUR_OF_DAY, hour);
-                calendar.set(Calendar.MINUTE, minute);
-                taskTime.setText(new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(calendar.getTime()));
+//                calendar.set(Calendar.HOUR_OF_DAY, hour);
+//                calendar.set(Calendar.MINUTE, minute);
+//                taskTime.setText(new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(calendar.getTime()));
             }
         },hour,minute, false);
         timePickerDialog.show();

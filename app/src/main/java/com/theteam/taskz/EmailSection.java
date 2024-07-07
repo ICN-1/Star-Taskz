@@ -50,22 +50,8 @@ import java.util.regex.Pattern;
 public class EmailSection extends Fragment {
 
     private LoadableButton button;
-    private LinearLayout googleSignInButton;
     private TextInputFormField emailForm,passwordForm,confirmPasswordForm;
     private UnderlineTextView textView;
-    private GoogleSignInClient mGoogleSignInClient;
-    private GoogleSignInOptions gso;
-    final int RC_SIGN_IN = 200;
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-    }
 
     @Nullable
     @Override
@@ -78,23 +64,11 @@ public class EmailSection extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
-
         button = view.findViewById(R.id.loadable_button);
         textView = view.findViewById(R.id.back);
         emailForm = view.findViewById(R.id.email_form);
         passwordForm = view.findViewById(R.id.password_form);
         confirmPasswordForm = view.findViewById(R.id.confirm_password_form);
-        googleSignInButton = view.findViewById(R.id.google_sign_in_button);
-
-        googleSignInButton.setOnClickListener(view1 -> {
-            startGoogleSignIn();
-        });
-
         if(AuthenticationDataHolder.email != null){
             emailForm.setText(AuthenticationDataHolder.email);
         }
@@ -156,36 +130,7 @@ public class EmailSection extends Fragment {
     void showErrorMessage(final String message){
         Toast.makeText(requireActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
-    void startGoogleSignIn(){
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-    void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            // Signed in successfully, show authenticated UI.
-            // You can get user details from 'account' object.
-            AuthenticationDataHolder.firstName = account.getGivenName();
-            AuthenticationDataHolder.lastName = account.getFamilyName() == null? "":account.getFamilyName();
-            AuthenticationDataHolder.email = account.getEmail();
-            AuthenticationDataHolder.password = "sTaR_TaSkZ@30_May@" + account.getEmail();
-            googleSignOut();
-            createAccount();
-        } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            showErrorMessage("Google Sign In Failed");
-        }
-    }
-    void googleSignOut(){
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(requireActivity(), new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // ...
-                    }
-                });
-    }
+
     void createAccount(){
         ApiService apiService = new ApiService(requireActivity(), requireActivity().getLayoutInflater());
         apiService.createAccount();

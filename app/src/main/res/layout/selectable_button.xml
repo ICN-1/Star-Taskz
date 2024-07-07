@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selectable_button_selected_background"
+    android:gravity="center"
+    android:id="@+id/root_layout"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/medium_value_size"
+    android:paddingVertical="@dimen/medium_font_size">
+    <ImageView
+        android:id="@+id/prefix_icon"
+        android:layout_width="@dimen/medium_icon_size"
+        android:layout_height="@dimen/medium_icon_size"
+        android:scaleType="centerCrop"
+        android:src="@drawable/business"
+        app:tint="@color/themeColor" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Business"
+            android:lines="1"
+            android:paddingLeft="@dimen/medium_value_size"
+            android:textColor="?attr/colorPrimary"
+            android:textColorHighlight="@color/highlightColor"
+            android:textCursorDrawable="@drawable/cursor_drawable"
+            android:textSize="@dimen/regular_font_size" />
+    </LinearLayout>
+
+
+</LinearLayout>

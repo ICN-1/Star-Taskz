@@ -22,6 +22,8 @@ public class TaskModel {
     public String name;
     public String id;
     public String globalId;
+    public String description;
+    public Calendar endDate;
 
     public int notifId = 0;
     public boolean notifIdExists = false;
@@ -31,11 +33,21 @@ public class TaskModel {
 
 
     public TaskModel(Map<String, Object> json){
+        // If the task has an end date or time, we assign it
+        if(json.get("end") != null){
+            Calendar endCalendar = Calendar.getInstance();
+            endCalendar.setTimeInMillis(parseStringToTime(json.get("end").toString()));
+            endDate = endCalendar;
+        }
+
+        // We assign the start date and time
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(parseStringToTime(json.get("time").toString()));
-
         date = calendar;
+
+        // We assign the id
         id = json.get("id").toString();
+
         //The global id can be the same as the id
         //So when parsing, it may give a NumberFormatException because it'll be like : '#TASK-?'
         //So this will help us determine wether we should parse it or
@@ -47,8 +59,19 @@ public class TaskModel {
             globalId = json.get("globalId").toString();
 
         }
+
+        // We assign the name and category
         name = json.get("name").toString();
         category = json.get("category").toString();
+
+        // If the task contains a description
+        if(json.get("description") != null){
+            description = json.get("description").toString();
+
+        }
+
+        // If the task has been scheduled to ring,
+        // It will have a notifIf, so we assign it as well
         if(json.containsKey("notifId")){
             notifId = (int) Integer.parseInt(String.valueOf(json.get("notifId").toString()));
             notifIdExists=true;
@@ -70,40 +93,60 @@ public class TaskModel {
 
     //We create a factory constructor to decode json data given in different key-values from API
     public static TaskModel fromJsonObject(JSONObject object){
+
+
         final Type type = new TypeToken<HashMap<String,Object>>(){}.getType();
         final HashMap<String,Object> json = new HashMap<>();
         final Gson gson = new Gson();
         final HashMap<String,Object> objectMap = gson.fromJson(object.toString(), type);
 
+        final String startDate = objectMap.get("startDate").toString();
+        final String startTime = objectMap.get("startTime").toString();
+        final String endDate = objectMap.get("endDate").toString();
+        final String endTime = objectMap.get("endTime").toString();
+
         json.put("name", objectMap.get("taskName").toString());
+        json.put("description", objectMap.get("taskDescription").toString());
         json.put("id", objectMap.get("fakeId").toString());
         json.put("globalId", objectMap.get("id").toString());
-        json.put("status", objectMap.get("taskStatus")==null? "pending":objectMap.get("taskStatus").toString());
+        json.put("status", objectMap.get("taskStatus")==null? "pending":objectMap.get("taskStatus").toString().toLowerCase());
         json.put("category", objectMap.get("taskCategory")==null? "Uncategorized":objectMap.get("taskCategory"));
         json.put("notifId", String.valueOf((int) AlarmManager.NOTIF_ID++));
 
 
+        // To set the startTime and startDate;
         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         final SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
-
         Calendar calendar = Calendar.getInstance();
-
         try {
-            calendar.setTimeInMillis(dateFormat.parse(objectMap.get("startDate").toString()).getTime());
+            calendar.setTimeInMillis(dateFormat.parse(startDate).getTime());
             Calendar timeCalendar = Calendar.getInstance();
-            timeCalendar.setTime(timeFormat.parse(objectMap.get("startTime").toString()));
+            timeCalendar.setTime(timeFormat.parse(startTime));
             calendar.set(Calendar.HOUR_OF_DAY, timeCalendar.get(Calendar.HOUR_OF_DAY));
             calendar.set(Calendar.MINUTE, timeCalendar.get(Calendar.MINUTE));
             calendar.set(Calendar.SECOND, timeCalendar.get(Calendar.SECOND));
-
-
-
-
         } catch (ParseException e) {
             e.printStackTrace();
         }
         json.put("time", calendar.getTimeInMillis());
 
+
+        // TODO: Do not forget to make both start and end dates and times the same if the ends aren't given.
+        // If the task has an endDate or endTime
+        Calendar endCalendar = Calendar.getInstance();
+        if(!startTime.equalsIgnoreCase(endTime) || !endDate.equalsIgnoreCase(startDate)){
+            try {
+                endCalendar.setTimeInMillis(dateFormat.parse(endDate).getTime());
+                Calendar timeCalendar = Calendar.getInstance();
+                timeCalendar.setTime(timeFormat.parse(endTime));
+                endCalendar.set(Calendar.HOUR_OF_DAY, timeCalendar.get(Calendar.HOUR_OF_DAY));
+                endCalendar.set(Calendar.MINUTE, timeCalendar.get(Calendar.MINUTE));
+                endCalendar.set(Calendar.SECOND, timeCalendar.get(Calendar.SECOND));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            json.put("end", endCalendar.getTimeInMillis());
+        }
 
         return new TaskModel(json);
 
@@ -181,8 +224,8 @@ public class TaskModel {
         jsonObject.put("startTime", isoFormat.format(date.getTime()));
         jsonObject.put("endDate", dateFormat.format(endDate.getTime()));
         jsonObject.put("endTime", isoFormat.format(endDate.getTime()));
-        jsonObject.put("taskStatus",status.name());
-        jsonObject.put("taskCategory", category);
+        jsonObject.put("taskStatus",status.name().toLowerCase());
+        jsonObject.put("taskCategory", category.toLowerCase());
 
 
         return jsonObject;

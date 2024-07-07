@@ -39,6 +39,7 @@ import com.theteam.taskz.LoginActivity;
 import com.theteam.taskz.utilities.AlarmManager;
 import com.theteam.taskz.utilities.DateComparator;
 import com.theteam.taskz.R;
+import com.theteam.taskz.utilities.EmojiRemover;
 import com.theteam.taskz.utilities.ReadAssetsFile;
 import com.theteam.taskz.models.TaskManager;
 import com.theteam.taskz.models.TaskModel;
@@ -241,9 +242,13 @@ public class AIFragment extends Fragment {
             @Override
             public void onInit(int i) {
                 if(i==TextToSpeech.SUCCESS){
-                    speech.setLanguage(new Locale("en", "US"));
-                    speech.setPitch(0.3f);
+//                    speech.setLanguage(new Locale("en", "US"));
+//                    speech.setPitch(0.3f);
                     speech.setSpeechRate(1.5f);
+                    AlarmManager.speech = speech;
+
+
+
 
                     speech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
                         @Override
@@ -284,6 +289,7 @@ public class AIFragment extends Fragment {
 
                         }
                     });
+
                     record_button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -409,7 +415,7 @@ public class AIFragment extends Fragment {
 
             }
             else{
-                speechStart(string);
+                speechStart(EmojiRemover.removeEmojis(string));
             }
         }
     }

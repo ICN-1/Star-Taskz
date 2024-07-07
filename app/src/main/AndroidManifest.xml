@@ -29,13 +29,19 @@
         android:theme="@style/Theme.Taskz"
         tools:targetApi="31">
         <activity
+            android:name=".SyncNotion"
+            android:exported="false" />
+        <activity
+            android:name=".NotionWebView"
+            android:exported="false" />
+        <activity
             android:name=".SelectPlatformSync"
             android:exported="false" />
         <activity
             android:name=".GithubSyncDircetions"
             android:exported="false" />
         <activity
-            android:name=".WebviewActivity"
+            android:name=".GithubWebView"
             android:exported="false" />
         <activity
             android:name=".SyncGithub"
