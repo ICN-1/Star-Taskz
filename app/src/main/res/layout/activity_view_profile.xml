@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical">
@@ -37,18 +37,32 @@
                 android:textStyle="bold"/>
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:background="@drawable/circle_background"
-            android:src="@drawable/person_icon"/>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:padding="10dp"
+                app:tint="@color/black"
+                android:background="@drawable/circular_profile_background"
+                android:src="@drawable/person_icon"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/circle_background"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="2dp"/>
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical">
@@ -57,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Open Tasks"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"/>
 
             <TextView
@@ -69,4 +83,98 @@
                 android:textStyle="bold"/>
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15sp"
+        android:text="Ifechukwu Nwachukwu"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:text="UI/UX Designer"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/share_icon"
+            app:tint="@color/themeColor"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:text="MESSAGE"
+            android:background="@drawable/themecolor_button_background"/>
+
+        <ImageView
+            android:id="@+id/goToSettings"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/settings_icon"
+            app:tint="@color/themeColor"/>
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:tabIndicatorColor="@color/highlightColor"
+        app:tabSelectedTextColor="@color/themeColor"
+        app:tabTextColor="@android:color/black">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Projects"
+            app:tabIndicatorColor="@color/highlightColor"
+            app:tabSelectedTextColor="@color/themeColor"
+            app:tabTextColor="@android:color/black"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_item2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Category"
+            app:tabIndicatorColor="@color/highlightColor"
+            app:tabSelectedTextColor="@color/themeColor"
+            app:tabTextColor="@android:color/black"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_item3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="People"
+            app:tabIndicatorColor="@color/highlightColor"
+            app:tabSelectedTextColor="@color/themeColor"
+            app:tabTextColor="@android:color/black"/>
+    </com.google.android.material.tabs.TabLayout>
 </LinearLayout>
