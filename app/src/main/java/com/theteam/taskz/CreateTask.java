@@ -2,10 +2,13 @@ package com.theteam.taskz;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -38,11 +41,22 @@ import java.util.Locale;
 
 public class CreateTask extends AppCompatActivity{
 
-    private TextInputFormField taskName,taskDate,taskTime,taskCategory;
+    private EditText taskName,taskDescription;
+    private LinearLayout startDateLayout, startTimeLayout, endDateLayout, endTimeLayout;
+
+    private LinearLayout workLayout, personalLayout, uncategorizedLayout,studyLayout;
     private LoadableButton button;
-    private TextView title_text,subtitle_text;
+    private TextView startDateText,startTimeText,endDateText,endTimeText;
+
+    private TextView workText,personalText,uncategorizedText,studyText;
+
+    private String category = "uncategorized";
     private Calendar calendar = Calendar.getInstance();
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +68,62 @@ public class CreateTask extends AppCompatActivity{
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        startDateLayout = findViewById(R.id.start_date_layout);
+        startTimeLayout = findViewById(R.id.start_time_layout);
+        endDateLayout = findViewById(R.id.end_date_layout);
+        endTimeLayout = findViewById(R.id.end_time_layout);
+        startDateText = findViewById(R.id.start_date_text);
+        startTimeText = findViewById(R.id.start_time_text);
+        endDateText = findViewById(R.id.end_date_text);
+        endTimeText = findViewById(R.id.end_time_text);
+        taskName = findViewById(R.id.task_name);
+        taskDescription = findViewById(R.id.task_description);
+        workLayout = findViewById(R.id.work_category);
+        personalLayout = findViewById(R.id.personal_category);
+        uncategorizedLayout = findViewById(R.id.uncategorized_category);
+        studyLayout = findViewById(R.id.study_category);
+        workText = findViewById(R.id.work_text);
+        personalText = findViewById(R.id.personal_text);
+        uncategorizedText = findViewById(R.id.uncategorized_text);
+        studyText = findViewById(R.id.study_text);
+
+        findViewById(R.id.back).setOnClickListener(view -> {
+            onBackPressed();
+        });
+
+        final String time = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Calendar.getInstance().getTime());
+        startTimeText.setText(time.toUpperCase());
+
+        startDateLayout.setOnClickListener(view -> {
+            showDatePickerDialog(true);
+        });
+        startTimeLayout.setOnClickListener(view -> {
+            showTimePickerDialog(true);
+        });
+        endDateLayout.setOnClickListener(view -> {
+            showDatePickerDialog(false);
+        });
+        endTimeLayout.setOnClickListener(view -> {
+            showTimePickerDialog(false);
+        });
+
+        workLayout.setOnClickListener(view -> {
+            category = "work";
+            refreshCategories();
+        });
+        personalLayout.setOnClickListener(view -> {
+            category = "personal";
+            refreshCategories();
+        });
+        uncategorizedLayout.setOnClickListener(view -> {
+            category = "uncategorized";
+            refreshCategories();
+        });
+        studyLayout.setOnClickListener(view -> {
+            category = "study";
+            refreshCategories();
         });
 
 //        title_text = findViewById(R.id.title_text);
@@ -179,11 +249,28 @@ public class CreateTask extends AppCompatActivity{
 //        taskDate.setEnabled(true);
 //        taskTime.setEnabled(true);
     }
-    void showDatePickerDialog(){
-        final Calendar _calendar = Calendar.getInstance();
-        final int year = _calendar.get(Calendar.YEAR);
-        final int month = _calendar.get(Calendar.MONTH);
-        final int day = _calendar.get(Calendar.DAY_OF_MONTH);
+    void showDatePickerDialog(boolean start){
+        final TextView target = start? startDateText: endDateText;
+        final Calendar startDate = Calendar.getInstance();
+        final Calendar endDate = Calendar.getInstance();
+        final Calendar targetCalendar = start? startDate: endDate;
+
+
+        final SimpleDateFormat format = new SimpleDateFormat("MMM dd", Locale.getDefault());
+
+        if(!target.getText().toString().contains("Today") && !target.getText().toString().contains("---")){
+            try {
+                targetCalendar.setTime(format.parse(target.getText().toString()));
+                // Set the year to the current year. The SDF doesn't cover year.
+                targetCalendar.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        final int year = targetCalendar.get(Calendar.YEAR);
+        final int month = targetCalendar.get(Calendar.MONTH);
+        final int day = targetCalendar.get(Calendar.DAY_OF_MONTH);
 
         final Calendar maxCal = Calendar.getInstance();
         maxCal.set(Calendar.MONTH, month ==12? 1: month+1);
@@ -193,67 +280,114 @@ public class CreateTask extends AppCompatActivity{
         DatePickerDialog datePickerDialog = new DatePickerDialog(CreateTask.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int _year, int _month, int _day) {
-                calendar.set(Calendar.YEAR, _year);
-                calendar.set(Calendar.MONTH, _month);
-                calendar.set(Calendar.DAY_OF_MONTH, _day);
+                final Calendar picked = Calendar.getInstance();
+                final Calendar now = (Calendar) picked.clone();
+                picked.set(Calendar.YEAR, _year);
+                picked.set(Calendar.MONTH, _month);
+                picked.set(Calendar.DAY_OF_MONTH, _day);
 
-//                showMessage("date picked");
-//                taskDate.setText(new SimpleDateFormat("EEE, MMM dd", Locale.getDefault()).format(calendar.getTime()));
-//                taskTime.setText("");
+                final String date = new SimpleDateFormat("MMM dd", Locale.getDefault()).format(picked.getTime());
+
+                target.setText(picked.get(Calendar.DAY_OF_YEAR)==now.get(Calendar.DAY_OF_YEAR)?"Today":date);
+
+                if(start){
+                    endDateText.setText("---");
+                    endTimeText.setText("---");
+                }
 
             }
         }, year,month,day);
-        datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+        if(!start){
+            final Calendar _startDate = Calendar.getInstance();
+            if(!startDateText.getText().toString().contains("Today") && !startDateText.getText().toString().contains("---")){
+                try {
+                    _startDate.setTime(format.parse(startDateText.getText().toString()));
+                    // Set the year to the current year. The SDF doesn't cover year.
+                    _startDate.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            datePickerDialog.getDatePicker().setMinDate(_startDate.getTimeInMillis());
+        }
         datePickerDialog.getDatePicker().setMaxDate(maxCal.getTimeInMillis());
+        datePickerDialog.setOnCancelListener(dialogInterface -> {
+            if(start){
+                return;
+            }
+            target.setText("---");
+        });
 
         datePickerDialog.show();
     }
 
-    void showTimePickerDialog(){
+    void showTimePickerDialog(boolean start){
         final Calendar _calendar = Calendar.getInstance();
         final int hour = _calendar.get(Calendar.HOUR);
         final int minute = _calendar.get(Calendar.MINUTE);
 
+
+        final TextView target = start? startTimeText: endTimeText;
+
+
         TimePickerDialog timePickerDialog = new TimePickerDialog(CreateTask.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-//                calendar.set(Calendar.HOUR_OF_DAY, hour);
-//                calendar.set(Calendar.MINUTE, minute);
-//                taskTime.setText(new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(calendar.getTime()));
+                final Calendar picked = Calendar.getInstance();
+                picked.set(Calendar.HOUR_OF_DAY, hour);
+                picked.set(Calendar.MINUTE, minute);
+
+                final String time = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(picked.getTime()).toUpperCase();
+                target.setText(time);
+
+                if(startDateText.getText().toString().equalsIgnoreCase(endDateText.getText().toString())){
+                    endTimeText.setText("---");
+                }
             }
+
         },hour,minute, false);
+        timePickerDialog.setOnCancelListener(dialogInterface -> {
+            if(start){
+                return;
+            }
+            target.setText("---");
+        });
+        timePickerDialog.create();
+        timePickerDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.themeColor));
+        timePickerDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.red));
+
         timePickerDialog.show();
     }
 
-    void showCategoryDialog(){
-        BottomSheetDialog dialog = new BottomSheetDialog(CreateTask.this);
-        View v = getLayoutInflater().inflate(R.layout.select_category, null);
-        final LinearLayout work = v.findViewById(R.id.work);
-        final LinearLayout study = v.findViewById(R.id.study);
-        final LinearLayout personal = v.findViewById(R.id.personal);
-        final LinearLayout uncategorized = v.findViewById(R.id.uncategorized);
+    void refreshCategories(){
+        workLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.redTransparent)));
+        personalLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.blueTransparent)));
+        uncategorizedLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.yellowTransparent)));
+        studyLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.greenTransparent)));
 
-        work.setOnClickListener(view -> {
-            taskCategory.setText("Work");
-            dialog.dismiss();
-        });
-        study.setOnClickListener(view -> {
-            taskCategory.setText("Study");
-            dialog.dismiss();
+        workText.setTextColor(getResources().getColor(R.color.red));
+        personalText.setTextColor(getResources().getColor(R.color.blue));
+        uncategorizedText.setTextColor(getResources().getColor(R.color.yellow));
+        studyText.setTextColor(getResources().getColor(R.color.themeColor));
 
-        });
-        personal.setOnClickListener(view -> {
-            taskCategory.setText("Personal");
-            dialog.dismiss();
+        if(category.contains("uncategorized")){
+            uncategorizedLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.yellow)));
+            uncategorizedText.setTextColor(getResources().getColor(R.color.white));
+        }
+        if(category.contains("work")){
+            workLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.red)));
+            workText.setTextColor(getResources().getColor(R.color.white));
+        }
+        if(category.contains("personal")){
+            personalLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
+            personalText.setTextColor(getResources().getColor(R.color.white));
+        }
+        if(category.contains("study")){
+            studyLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.themeColor)));
+            studyText.setTextColor(getResources().getColor(R.color.white));
+        }
 
-        });
-        uncategorized.setOnClickListener(view -> {
-            taskCategory.setText("Uncategorized");
-            dialog.dismiss();
-        });
-        dialog.setContentView(v);
-        dialog.setDismissWithAnimation(true);
-        dialog.show();
 
     }
 

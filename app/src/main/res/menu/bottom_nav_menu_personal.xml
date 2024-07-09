@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_tasks"
-        android:icon="@drawable/task"
-        android:title="Tasks" />
-    <item
-        android:id="@+id/navigation_calender"
         android:icon="@drawable/calendar"
-        android:title="Calender" />
+        android:title="Tasks" />
     <item
         android:id="@+id/navigation_ai"
         android:icon="@drawable/ai"
@@ -16,9 +13,9 @@
         android:id="@+id/navigation_focus"
         android:icon="@drawable/pomodoro"
         android:title="Pomodoro" />
+    <item
+        android:id="@+id/navigation_setting"
+        android:icon="@drawable/settings"
+        android:title="Settings" />
 
-<!--    <item-->
-<!--        android:id="@+id/navigation_weather"-->
-<!--        android:icon="@drawable/weather"-->
-<!--        android:title="Weather" />-->
 </menu>

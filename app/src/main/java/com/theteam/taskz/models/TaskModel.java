@@ -114,6 +114,7 @@ public class TaskModel {
         json.put("notifId", String.valueOf((int) AlarmManager.NOTIF_ID++));
 
 
+
         // To set the startTime and startDate;
         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         final SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());

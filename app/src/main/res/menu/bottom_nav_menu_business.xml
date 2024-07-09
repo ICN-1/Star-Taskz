@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigation_projects"
+        android:icon="@drawable/projects"
+        android:title="Projects" />
+    <item
+        android:id="@+id/navigation_collaboration"
+        android:icon="@drawable/collaboration"
+        android:title="Collaboration" />
+    <item
+        android:id="@+id/navigation_ai"
+        android:icon="@drawable/ai"
+        android:title="AI" />
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/user"
+        android:title="Profile" />
+
+<!--    <item-->
+<!--        android:id="@+id/navigation_weather"-->
+<!--        android:icon="@drawable/weather"-->
+<!--        android:title="Weather" />-->
+</menu>

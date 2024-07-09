@@ -56,6 +56,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Random;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -81,6 +82,7 @@ public class AIFragment extends Fragment {
     private ChatFutures chat;
 
     private boolean isListening = false;
+    private boolean isThinking = false;
 
     private MediaPlayer recordMp, stopMp;
 
@@ -104,7 +106,7 @@ public class AIFragment extends Fragment {
         ai_text = view.findViewById(R.id.ai_text);
         ai_text.setStartDelay(20);
         ai_text.setTypingInterval(50);
-        ai_text.animateText("Hey there! need assistance?");
+        ai_text.animateText("Hi there! Star here😊");
         recordMp = MediaPlayer.create(requireActivity().getApplicationContext(), R.raw.hangup);
 
 
@@ -191,6 +193,16 @@ public class AIFragment extends Fragment {
                 isListening = false;
                 record_button.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.themeColor)));
                 record_icon.setImageResource(R.drawable.record);
+                // TO display and say that AI is thinking.
+                isThinking = true;
+                final boolean yes = new Random().nextBoolean();
+                speak(yes?"Hmmm, Let me see...":"Hold on, give me a minute");
+                ai_text.animateText(yes?"Let me see...":"Give me a minute");
+                ai_lottie.setAnimation(new ThemeManager(requireActivity()).isDarkMode()? R.raw.ai_thinking_dark: R.raw.ai_thinking);
+                ai_lottie.setScaleX(0.7f);
+                ai_lottie.setScaleY(0.7f);
+                ai_lottie.playAnimation();
+
             }
 
             @Override
@@ -198,9 +210,13 @@ public class AIFragment extends Fragment {
                 Log.v("AI", String.valueOf(i));
                 if(i == SpeechRecognizer.ERROR_AUDIO){
                     ai_text.animateText("Could not hear you :(");
+                    final boolean yes = new Random().nextBoolean();
+                    speechStart(yes? "Whoa Whoa.\n Slow down. Chill and Talk Calm" : "Oops, Sorry pal, Not able to hear you.");
                 }
                 if(i == SpeechRecognizer.ERROR_NO_MATCH){
                     ai_text.animateText("Try to be more clear :(");
+                    final boolean yes = new Random().nextBoolean();
+                    speechStart(yes? "Whoa Whoa.\n Slow down. Chill and Talk Calm" : "Oops, Sorry pal, Not able to hear you.");
                 }
                 if(i== SpeechRecognizer.ERROR_CLIENT){
                     ai_text.animateText("Something went wrong :(");
@@ -237,6 +253,7 @@ public class AIFragment extends Fragment {
             public void onEvent(int i, Bundle bundle) {
             }
         });
+        
         // Initialize speech
         speech = new TextToSpeech(requireActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
@@ -258,6 +275,10 @@ public class AIFragment extends Fragment {
                         @Override
                         public void onRangeStart(String utteranceId, int start, int end, int frame) {
                             super.onRangeStart(utteranceId, start, end, frame);
+                            // We don't want to change the text to what ai says if it is thinking.
+                            if(isThinking){
+                                return;
+                            }
                             requireActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -327,7 +348,6 @@ public class AIFragment extends Fragment {
     }
 
     private void askAi(String question){
-        ai_text.animateText("Give me a minute...");
         Content content = new Content.Builder()
                 .addText(question)
                 .build();
@@ -358,7 +378,7 @@ public class AIFragment extends Fragment {
                 else if(throwable.getMessage().equalsIgnoreCase("Resource has been exhausted (e.g. check quota).")){
                     speechStart("Oops, an unprecedented error occurred. Please be more clear");
                 }
-                else {
+                else if(!throwable.getMessage().toLowerCase().contains("chat instance")){
                     speechStart(throwable.getMessage());
                 }
                 Log.v("AI", throwable.getMessage());
@@ -671,15 +691,18 @@ public class AIFragment extends Fragment {
 
     }
     private void speechStart(String speech){
-        speak(speech);
         requireActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                isThinking = false;
                 if(new ThemeManager(requireActivity()).isDarkMode()){
                     ai_lottie.setAnimation(R.raw.ai_speaking_dark);
                 }else{
                     ai_lottie.setAnimation(R.raw.ai_speaking_light);
                 }
+                ai_lottie.setScaleX(1.4f);
+                ai_lottie.setScaleY(1.4f);
+                speak(speech);
                 ai_lottie.playAnimation();
                 ai_text.setVisibility(View.GONE);
             }
@@ -687,11 +710,16 @@ public class AIFragment extends Fragment {
 
     }
     private void speechStop(){
+        // We don't want to change the animation if it is thinking.
+        if(isThinking){
+            return;
+        }
         speech.stop();
         ai_text.setVisibility(View.VISIBLE);
         ai_text.animateText("Need any assistance?");
+        ai_lottie.setScaleX(1f);
+        ai_lottie.setScaleY(1f);
         ai_lottie.setAnimation(R.raw.ai_not_speaking);
-        ai_lottie.setColorFilter(null);
         ai_lottie.playAnimation();
 
     }
@@ -735,16 +763,6 @@ public class AIFragment extends Fragment {
             return true;
         } catch (JsonSyntaxException ex) {
             return false;
-        }
-    }
-    private void speak(ArrayList<HashMap<String,String>> array){
-        if(speech.isSpeaking()){
-            speech.stop();
-        }
-        speeches.clear();
-        speeches = array;
-        for(int i=0;i<speeches.size();i++) {
-            speech.speak(speeches.get(i).get("speech"), i == 0 ? TextToSpeech.QUEUE_FLUSH : TextToSpeech.QUEUE_ADD, null, speeches.get(i).get("utteranceId"));
         }
     }
 

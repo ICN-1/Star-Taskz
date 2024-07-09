@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
     private final String[] permissions = new String[]{
             Manifest.permission.POST_NOTIFICATIONS,
             Manifest.permission.SYSTEM_ALERT_WINDOW,
@@ -209,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
                 new Timer().schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        Intent i = new Intent(getApplicationContext(),model.isExists()? HomeActivity.class: PlatformSync.class);
+                        Intent i = new Intent(getApplicationContext(),model.isExists()? HomeActivity.class: LoginActivity.class);
                         startActivity(i);
                         cancel();
                         finish();

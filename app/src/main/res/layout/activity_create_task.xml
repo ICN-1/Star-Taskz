@@ -24,12 +24,12 @@
                 android:orientation="vertical">
                 <ImageView
                     android:id="@+id/back"
-                    android:layout_width="@dimen/medium_icon_size"
-                    android:layout_height="@dimen/medium_icon_size"
+                    android:layout_width="@dimen/regular_icon_size"
+                    android:layout_height="@dimen/regular_icon_size"
                     android:layout_marginTop="@dimen/regular_value_size"
                     android:src="@drawable/back"
                     android:layout_marginBottom="@dimen/medium_value_size"
-                    app:tint="@color/themeColor"/>
+                    app:tint="?attr/colorPrimary"/>
                 <TextView
                     android:id="@+id/title_text"
                     android:layout_width="match_parent"
@@ -61,7 +61,6 @@
                     android:paddingTop="0dp"
                     android:paddingBottom="@dimen/medium_value_size"
                     android:textColor="?attr/colorPrimary"
-                    android:text="Finance App Design"
                     android:lines="1"
                     android:layout_marginBottom="@dimen/medium_value_size"
                     android:hint="Enter Task name"
@@ -87,7 +86,7 @@
                     android:paddingTop="@dimen/small_value_size"
                     android:paddingBottom="@dimen/medium_value_size"
                     android:textColor="?attr/colorSecondary"
-                    android:text="Join us in solving the challenges that the food industry is facing. Free of charge. Grow your network, get expert advice and join the meeting. Join the meeting. "
+                    android:text=""
                     android:layout_marginBottom="@dimen/medium_value_size"
                     android:hint="Enter task description"
                     tools:ignore="HardcodedText" />
@@ -103,7 +102,7 @@
                     android:fontFamily="@font/poppins_semibold"
                     tools:ignore="HardcodedText" />
                 <LinearLayout
-                    android:id="@+id/collaborators_lis"
+                    android:id="@+id/collaborators_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/medium_value_size"
@@ -345,6 +344,7 @@
                 android:layout_width="match_parent"
                 android:scrollbarThumbHorizontal="@android:color/transparent"
                 android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:layout_marginBottom="@dimen/medium_value_size"
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -353,6 +353,24 @@
                     android:paddingHorizontal="@dimen/large_value_size"
                     android:orientation="horizontal">
                     <LinearLayout
+                        android:id="@+id/uncategorized_category"
+                        android:layout_marginHorizontal="@dimen/regular_value_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/small_rounded_corner_background"
+                        android:backgroundTint="@color/yellow"
+                        android:paddingHorizontal="@dimen/medium_value_size"
+                        android:paddingVertical="@dimen/regular_value_size">
+                        <TextView
+                            android:id="@+id/uncategorized_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Uncategorized"
+                            android:textSize="@dimen/small_font_size"/>
+                    </LinearLayout>
+                    <LinearLayout
                         android:id="@+id/work_category"
                         android:layout_marginHorizontal="@dimen/regular_value_size"
                         android:layout_width="wrap_content"
@@ -360,8 +378,9 @@
                         android:background="@drawable/small_rounded_corner_background"
                         android:backgroundTint="@color/redTransparent"
                         android:paddingHorizontal="@dimen/medium_value_size"
-                        android:paddingVertical="@dimen/small_value_size">
+                        android:paddingVertical="@dimen/regular_value_size">
                         <TextView
+                            android:id="@+id/work_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/red"
@@ -370,32 +389,16 @@
                             android:textSize="@dimen/small_font_size"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@+id/personal_category"
-                        android:layout_marginHorizontal="@dimen/regular_value_size"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/small_rounded_corner_background"
-                        android:backgroundTint="@color/blueTransparent"
-                        android:paddingHorizontal="@dimen/medium_value_size"
-                        android:paddingVertical="@dimen/small_value_size">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/blue"
-                            android:fontFamily="@font/poppins_medium"
-                            android:text="Personal"
-                            android:textSize="@dimen/small_font_size"/>
-                    </LinearLayout>
-                    <LinearLayout
                         android:id="@+id/study_category"
                         android:layout_marginHorizontal="@dimen/regular_value_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/small_rounded_corner_background"
-                        android:backgroundTint="@color/highlightColor"
+                        android:backgroundTint="@color/greenTransparent"
                         android:paddingHorizontal="@dimen/medium_value_size"
-                        android:paddingVertical="@dimen/small_value_size">
+                        android:paddingVertical="@dimen/regular_value_size">
                         <TextView
+                            android:id="@+id/study_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/themeColor"
@@ -403,21 +406,23 @@
                             android:text="Study"
                             android:textSize="@dimen/small_font_size"/>
                     </LinearLayout>
+
                     <LinearLayout
-                        android:id="@+id/uncategorized_category"
+                        android:id="@+id/personal_category"
                         android:layout_marginHorizontal="@dimen/regular_value_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/small_rounded_corner_background"
-                        android:backgroundTint="@color/yellowTransparent"
+                        android:backgroundTint="@color/blueTransparent"
                         android:paddingHorizontal="@dimen/medium_value_size"
-                        android:paddingVertical="@dimen/small_value_size">
+                        android:paddingVertical="@dimen/regular_value_size">
                         <TextView
+                            android:id="@+id/personal_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/yellow"
+                            android:textColor="@color/blue"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Uncategorized"
+                            android:text="Personal"
                             android:textSize="@dimen/small_font_size"/>
                     </LinearLayout>
                 </LinearLayout>

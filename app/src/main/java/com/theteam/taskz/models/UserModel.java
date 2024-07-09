@@ -27,7 +27,22 @@ public class UserModel {
         final String jsonString = preferences.getString("userdata", "{}");
         Gson gson = new Gson();
         Type mapType = new TypeToken<HashMap<String, Object>>(){}.getType();
-        json = gson.fromJson(jsonString, mapType);
+//        json = gson.fromJson(jsonString, mapType);
+
+        //For now, we are using a predefined data;
+
+        final HashMap<String,Object> userJson = new HashMap<>();
+        userJson.put("id", 1);
+        userJson.put("firstName", "John");
+        userJson.put("lastName", "Doe");
+        userJson.put("email", "john.doe@example.com");
+        userJson.put("password", "password");
+        userJson.put("dateOfBirth", "1990-01-01");
+        userJson.put("authToken", "1234567890");
+        userJson.put("tokenExpiration", "2023-01-01T00:00:00");
+        userJson.put("sync", false);
+
+        json = userJson;
     }
 
     public static void saveUserData(HashMap<String,Object> map, Context context){
