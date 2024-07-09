@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="?attr/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GithubSyncDircetions">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="@dimen/extra_large_value_size"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_value_size"
+                android:text="Github Fine-Grained Token"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="@dimen/large_font_size"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginBottom="@dimen/extra_large_value_size"
+                android:fontFamily="@font/poppins_semibold"
+                tools:ignore="HardcodedText" />
+
+            <!-- Navigation to developer settings -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_value_size"
+                android:text="1. Navigate to Developer Settings"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="@dimen/medium_font_size"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginBottom="@dimen/small_value_size"
+                android:fontFamily="@font/poppins_semibold"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="On the Github Website, navigate to the 'Developer Settings'.\nThen Click on 'Fine-grained tokens' as seen below."
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="10sp"
+                android:textColor="?attr/colorSecondary"
+                android:layout_marginBottom="@dimen/regular_value_size"
+                android:fontFamily="@font/poppins_regular"
+                tools:ignore="HardcodedText" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="0dp"
+                android:elevation="0dp"
+                android:layout_marginBottom="@dimen/extra_large_value_size"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                app:cardCornerRadius="@dimen/regular_value_size">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/access_token_location"
+                    android:maxHeight="130dp"/>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Entering Token Name and Description -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_value_size"
+                android:text="2. Enter your token details"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="@dimen/medium_font_size"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginBottom="@dimen/small_value_size"
+                android:fontFamily="@font/poppins_semibold"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fill in your token's name and description (optional) below.\nThe time Expiration can also be set. It's best to set to at least 30 days."
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="10sp"
+                android:textColor="?attr/colorSecondary"
+                android:layout_marginBottom="@dimen/regular_value_size"
+                android:fontFamily="@font/poppins_regular"
+                tools:ignore="HardcodedText" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="0dp"
+                android:elevation="0dp"
+                android:layout_marginBottom="@dimen/extra_large_value_size"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                app:cardCornerRadius="@dimen/regular_value_size">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/access_token_name_and_description"
+                    android:maxHeight="130dp"/>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Selecting repository access -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3. Select repository access"
+                android:layout_marginTop="@dimen/large_value_size"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="@dimen/medium_font_size"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginBottom="@dimen/small_value_size"
+                android:fontFamily="@font/poppins_semibold"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Next, choose the repositories this token is permitted to access.\nIn Star Taskz, we advise you select 'All Repositories' to prevent unknown issues during th course of the app."
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="10sp"
+                android:textColor="?attr/colorSecondary"
+                android:layout_marginBottom="@dimen/regular_value_size"
+                android:fontFamily="@font/poppins_regular"
+                tools:ignore="HardcodedText" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="0dp"
+                android:elevation="0dp"
+                android:layout_marginBottom="@dimen/extra_large_value_size"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                app:cardCornerRadius="@dimen/regular_value_size">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/access_token_repositories"
+                    android:maxHeight="130dp"/>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Enabling repository permissions -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4. Enable repository permissions"
+                android:layout_marginTop="@dimen/large_value_size"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="@dimen/medium_font_size"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginBottom="@dimen/small_value_size"
+                android:fontFamily="@font/poppins_semibold"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="After, You will have to enable some rep permissions.\nNavigate to the 'Repository Permissions' section as seen below."
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="10sp"
+                android:textColor="?attr/colorSecondary"
+                android:layout_marginBottom="@dimen/regular_value_size"
+                android:fontFamily="@font/poppins_regular"
+                tools:ignore="HardcodedText" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="0dp"
+                android:elevation="0dp"
+                android:layout_marginBottom="@dimen/extra_large_value_size"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                app:cardCornerRadius="@dimen/regular_value_size">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:minHeight="70dp"
+                    android:src="@drawable/access_token_repo_permissions"
+                    android:maxHeight="130dp"/>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Enabling pull requests permissions -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5. Enable Pull Requests"
+                android:layout_marginTop="@dimen/large_value_size"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="@dimen/medium_font_size"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginBottom="@dimen/small_value_size"
+                android:fontFamily="@font/poppins_semibold"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="First, you will enable the 'Pull Requests' permission and set it to 'Read and write'.\nIn Star Taskz, This will help list and complete your 'Pull Requests' as tasks."
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="10sp"
+                android:textColor="?attr/colorSecondary"
+                android:layout_marginBottom="@dimen/regular_value_size"
+                android:fontFamily="@font/poppins_regular"
+                tools:ignore="HardcodedText" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="0dp"
+                android:elevation="0dp"
+                android:layout_marginBottom="@dimen/extra_large_value_size"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                app:cardCornerRadius="@dimen/regular_value_size">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:minHeight="70dp"
+                    android:src="@drawable/access_token_pull_requests"
+                    android:maxHeight="130dp"/>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Enabling issues permissions -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="6. Enable Issues"
+                android:layout_marginTop="@dimen/large_value_size"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="@dimen/medium_font_size"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginBottom="@dimen/small_value_size"
+                android:fontFamily="@font/poppins_semibold"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="After enabling 'Pull Requests', you will also enable 'Issues' permission and set to 'Read and Write' as well.\nIn Star Taskz, This will help list and update your 'Github Issues' as tasks."
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="10sp"
+                android:textColor="?attr/colorSecondary"
+                android:layout_marginBottom="@dimen/regular_value_size"
+                android:fontFamily="@font/poppins_regular"
+                tools:ignore="HardcodedText" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="0dp"
+                android:elevation="0dp"
+                android:layout_marginBottom="@dimen/extra_large_value_size"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                app:cardCornerRadius="@dimen/regular_value_size">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:minHeight="70dp"
+                    android:src="@drawable/access_token_issues"
+                    android:maxHeight="130dp"/>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Generate Token -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="7. Generate Token"
+                android:layout_marginTop="@dimen/large_value_size"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="@dimen/medium_font_size"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginBottom="@dimen/small_value_size"
+                android:fontFamily="@font/poppins_semibold"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="After all this, you can generate your 'Fine-grained access token'.\n No other steps are required."
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                android:textSize="10sp"
+                android:textColor="?attr/colorSecondary"
+                android:layout_marginBottom="@dimen/regular_value_size"
+                android:fontFamily="@font/poppins_regular"
+                tools:ignore="HardcodedText" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="0dp"
+                android:elevation="0dp"
+                android:layout_marginBottom="@dimen/extra_large_value_size"
+                android:layout_marginHorizontal="@dimen/large_value_size"
+                app:cardCornerRadius="@dimen/regular_value_size">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:minHeight="70dp"
+                    android:src="@drawable/access_token_generate"
+                    android:maxHeight="130dp"/>
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -7,6 +7,7 @@
         <item name="colorSecondary">@color/secondaryLight</item>
         <item name="background">@color/backgroundLight</item>
         <item name="colorOnBackground">@color/rootBackgroundLight</item>
+        <item name="colorBackgroundFloating">#0C000000</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/white</item>

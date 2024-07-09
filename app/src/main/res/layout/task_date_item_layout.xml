@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/task_date_item_shadow">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/extra_large_value_size"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="0dp"
+        android:layout_marginVertical="@dimen/small_value_size"
+        android:layout_marginHorizontal="@dimen/small_value_size">
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="10dp"
+            android:background="?attr/colorOnBackground"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/dayText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorPrimary"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="18sp"
+                android:padding="0dp"
+                android:gravity="center"
+                android:text="2 "/>
+            <TextView
+                android:id="@+id/dayOfWeekText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorSecondary"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="10sp"
+                android:padding="0dp"
+                android:gravity="top"
+                android:text="Sun"/>
+            <ImageView
+                android:id="@+id/indicator"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                app:tint="@color/themeColor"
+                android:src="@drawable/circle_dot"
+                android:scaleType="centerCrop"/>
+
+        </LinearLayout>
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

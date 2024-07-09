@@ -18,6 +18,15 @@
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="match_parent"/>
+            <!-- Intentionally did not include
+            include bottom navigation bar menu items
+            in XML file. This is because, inflating the menu
+            corresponding to the user's account type
+            will add more menus to the preset menu rather than
+            override them-->
+            <!-- Intentionally set the backgroundTint to ?attr/background
+            because of Tasks Page
+            -->
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_nav_bar"
                 android:layout_width="match_parent"
@@ -27,7 +36,6 @@
                 android:foregroundGravity="bottom"
                 app:itemPaddingTop="12dp"
                 app:itemPaddingBottom="14dp"
-                app:menu="@menu/bottom_nav_menu"
                 android:theme="@style/BottomBarTheme"
                 app:itemIconSize="27dp"
                 app:itemRippleColor="@android:color/transparent"

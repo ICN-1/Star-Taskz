@@ -27,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         // We're only using NameSection and EmailSection
         views.add(new NameSection());
+        views.add(new CategorySection());
         views.add(new EmailSection());
 
         viewPager = (ViewPager2) findViewById(R.id.view_pager);

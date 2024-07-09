@@ -175,20 +175,16 @@ public class AlarmsReceiver extends BroadcastReceiver {
                 @Override
                 public void onInit(int i) {
                     if(i == TextToSpeech.SUCCESS){
-                        final int res = AlarmManager.speech.setLanguage(new Locale("en", "US"));
-                        AlarmManager.speech.setPitch(0.3f);
+//                        final int res = AlarmManager.speech.setLanguage(new Locale("en", "US"));
+//                        AlarmManager.speech.setPitch(0.3f);
                         AlarmManager.speech.setSpeechRate(1.5f);
-
-                        if(res == TextToSpeech.LANG_MISSING_DATA || res==TextToSpeech.LANG_NOT_SUPPORTED){
-                            AlarmManager.speech.setLanguage(Locale.ENGLISH);
-                            AlarmManager.speech.setVoice(new Voice("eng-USA",Locale.ENGLISH, Voice.QUALITY_VERY_HIGH, Voice.LATENCY_VERY_LOW,true, null));
-                        }
-
-
                         AlarmManager.speech.speak("This is a Reminder From Star Tasks", TextToSpeech.QUEUE_ADD, null, null);
                         AlarmManager.speech.speak("Your Task '" + model.name + "' should start now.", TextToSpeech.QUEUE_ADD, null, null);
                         AlarmManager.speech.speak("It is " + timeString, TextToSpeech.QUEUE_ADD, null, null);
                         AlarmManager.speech.speak("Please, Do not forget your Task", TextToSpeech.QUEUE_ADD, null, null);
+
+
+
                     }
                 }
             });

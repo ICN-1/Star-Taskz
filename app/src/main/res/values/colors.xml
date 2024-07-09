@@ -10,22 +10,28 @@
     <color name="grey">#BAB9B9</color>
     <color name="blue">#2196F3</color>
     <color name="light_red">#FFC1BD</color>
+    <color name="blueTransparent">#332196F3</color>
     <color name="red">#CC1B0E</color>
+    <color name="redTransparent">#33CC1B0E</color>
+
     <color name="yellow">#FF9800</color>
+    <color name="yellowTransparent">#33FF9800</color>
+
     <color name="primaryLight">#FF000000</color>
     <color name="primaryDark">#FFFFFFFF</color>
     <color name="secondaryLight">#8A000000</color>
     <color name="secondaryDark">#B3FFFFFF</color>
     <color name="tertiaryLight">#FAF7F7F3</color>
-    <color name="tertiaryDark">#2c2c2c</color>
+    <color name="tertiaryDark">#1F1F20</color>
     <color name="backgroundLight">#FFFFFF</color>
     <color name="backgroundDark">#141415</color>
     <color name="rootBackgroundLight">#FFFFFF</color>
-    <color name="rootBackgroundDark">#2C2C2C</color>
+    <color name="rootBackgroundDark">#1F1F20</color>
 
 
     <color name="themeColor">#FF109E15</color>
     <color name="themeColorTransparent">#FF109E15</color>
+    <color name="greenTransparent">#33109E15</color>
     <color name="highlightColor">#46109E15</color>
     <color name="light_blue_50">#FFE1F5FE</color>
     <color name="light_blue_200">#FF81D4FA</color>

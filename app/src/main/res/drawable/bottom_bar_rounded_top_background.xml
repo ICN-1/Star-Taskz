@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="?attr/colorOnBackground"/>
+    <solid android:color="?attr/background"/>
     <corners android:topLeftRadius="@dimen/extra_large_value_size" android:topRightRadius="@dimen/extra_large_value_size"/>
+    <!-- Intentionally set the backgroundTint to ?attr/background
+            because of Tasks Page
+            -->
 </shape>

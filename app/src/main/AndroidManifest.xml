@@ -32,7 +32,27 @@
             android:name=".ViewProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".SettingsActivity"/>
+      <activity
+            android:name=".SyncNotion"
+            android:exported="false" />
+        <activity
+            android:name=".NotionWebView"
+            android:exported="false" />
+        <activity
+            android:name=".SelectPlatformSync"
+            android:exported="false" />
+        <activity
+            android:name=".GithubSyncDircetions"
+            android:exported="false" />
+        <activity
+            android:name=".GithubWebView"
+            android:exported="false" />
+        <activity
+            android:name=".SyncGithub"
+            android:exported="false" />
+        <activity
+            android:name=".PlatformSync"
             android:exported="false" />
         <activity
             android:name=".OnboardingScreen"

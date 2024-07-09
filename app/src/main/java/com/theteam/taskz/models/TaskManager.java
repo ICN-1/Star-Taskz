@@ -14,6 +14,7 @@ import com.theteam.taskz.CalendarPageFragment;
 import com.theteam.taskz.CreateTask;
 import com.theteam.taskz.TasksPageFragment;
 import com.theteam.taskz.data.StateHolder;
+import com.theteam.taskz.enums.TaskStatus;
 import com.theteam.taskz.models.TaskModel;
 import com.theteam.taskz.models.UserModel;
 import com.theteam.taskz.services.ApiService;
@@ -77,8 +78,11 @@ public class TaskManager {
             }
         }
         if(Calendar.getInstance().getTime().before(model.date.getTime())){
-            final AlarmManager taskReminder = new AlarmManager(context.getApplicationContext(), context);
-            taskReminder.setAlarm(model, speak);
+            if(model.status != TaskStatus.Completed){
+                final AlarmManager taskReminder = new AlarmManager(context.getApplicationContext(), context);
+                taskReminder.setAlarm(model, speak);
+            }
+
         }
 
     }
@@ -166,10 +170,17 @@ public class TaskManager {
 
 
         refresh(model);
+        final AlarmManager taskReminder = new AlarmManager(context.getApplicationContext(), context);
+
+
         if(Calendar.getInstance().getTime().before(model.date.getTime())){
-            final AlarmManager taskReminder = new AlarmManager(context.getApplicationContext(), context);
             taskReminder.cancelAlarm(model);
             taskReminder.setAlarm(model, speak,false);
+        }
+        else{
+            if(model.status == TaskStatus.Completed){
+                taskReminder.cancelAlarm(model);
+            }
         }
 
     }
