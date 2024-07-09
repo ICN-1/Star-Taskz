@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigation_plans"
+        android:icon="@drawable/task"
+        android:title="Plans" />
+    <item
+        android:id="@+id/navigation_family"
+        android:icon="@drawable/groups"
+        android:title="Family" />
+    <item
+        android:id="@+id/navigation_ai"
+        android:icon="@drawable/ai"
+        android:title="AI" />
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/user"
+        android:title="Profile" />
+
+<!--    <item-->
+<!--        android:id="@+id/navigation_weather"-->
+<!--        android:icon="@drawable/weather"-->
+<!--        android:title="Weather" />-->
+</menu>

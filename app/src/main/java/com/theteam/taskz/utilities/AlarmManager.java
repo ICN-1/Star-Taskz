@@ -211,7 +211,7 @@ public class AlarmManager {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtras(b);
 
-        pi = PendingIntent.getBroadcast(application_context, model.notifIdExists?model.notifId:NOTIF_ID, intent, PendingIntent.FLAG_MUTABLE);
+        pi = PendingIntent.getBroadcast(application_context, model.notifIdExists?model.notifId:NOTIF_ID, intent, PendingIntent.FLAG_IMMUTABLE);
 
         if(star_taskz == null){
             star_taskz = (android.app.AlarmManager) activity_context.getSystemService(Context.ALARM_SERVICE);

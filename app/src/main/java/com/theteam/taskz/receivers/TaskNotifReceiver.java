@@ -38,6 +38,7 @@ public class TaskNotifReceiver extends BroadcastReceiver {
         manager.updateTask(model);
         AlarmManager alarm = new AlarmManager(context,context.getApplicationContext());
         alarm.cancelAlarm(model);
+        alarm.cancelAlarm(model);
 
 
 

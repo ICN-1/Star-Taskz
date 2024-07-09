@@ -41,7 +41,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="Sunday"
+                        android:text="July"
                         android:textColor="?attr/colorPrimary"
                         android:textSize="@dimen/large_font_size"/>
                     <TextView

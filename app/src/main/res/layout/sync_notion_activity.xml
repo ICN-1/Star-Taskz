@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="?attr/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SyncNotion">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sync with Notion"
+            android:layout_marginHorizontal="@dimen/large_value_size"
+            android:textSize="@dimen/large_font_size"
+            android:textColor="?attr/colorPrimary"
+            android:layout_marginBottom="@dimen/small_value_size"
+            android:fontFamily="@font/poppins_semibold"
+            tools:ignore="HardcodedText" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sync your Tasks or Todos from your Notion Account. First, Login to your Notion Account.\n After that, follow the guide below to get your Tasks Url."
+            android:layout_marginHorizontal="@dimen/large_value_size"
+            android:textSize="@dimen/regular_font_size"
+            android:textColor="?attr/colorSecondary"
+            android:fontFamily="@font/poppins_regular"
+            tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/guide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guide to sync with Notion"
+            android:layout_marginHorizontal="@dimen/large_value_size"
+            android:textSize="@dimen/regular_font_size"
+            android:textColor="@color/themeColor"
+            android:layout_marginBottom="@dimen/extra_large_value_size"
+            android:fontFamily="@font/poppins_medium"
+            tools:ignore="HardcodedText" />
+
+        <LinearLayout
+            android:id="@+id/notion_sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_large_value_size"
+            android:layout_marginHorizontal="@dimen/large_value_size">
+            <include layout="@layout/notion_signup_button"/>
+        </LinearLayout>
+       <LinearLayout
+            android:layout_marginHorizontal="@dimen/extra_large_value_size"
+            android:layout_width="match_parent"
+            android:weightSum="2"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/extra_large_value_size"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/medium_value_size"
+                android:layout_weight="1"
+                android:background="@drawable/divider_drawable"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorSecondary"
+                android:text="Then, To Sync"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="@dimen/small_font_size"
+                tools:ignore="HardcodedText" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_value_size"
+                android:layout_weight="1"
+                android:background="@drawable/divider_drawable"/>
+
+        </LinearLayout>
+        <com.theteam.taskz.view_models.TextInputFormField
+            android:id="@+id/token_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/large_value_size"
+            app:fontFamily="@font/poppins_regular"
+            app:hint="Enter URL"
+            app:isPassword="false"
+            android:layout_marginBottom="@dimen/large_value_size"
+            android:inputType="textEmailAddress"
+            app:hintColor="?attr/colorSecondary"
+            app:prefixIcon="@drawable/notion"/>
+
+        <com.theteam.taskz.view_models.LoadableButton
+            android:id="@+id/loadable_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/large_value_size"
+            android:layout_marginHorizontal="@dimen/large_value_size"
+            app:text="Sync"
+            app:backgroundColor="@color/themeColor"/>
+
+
+
+
+
+    </LinearLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

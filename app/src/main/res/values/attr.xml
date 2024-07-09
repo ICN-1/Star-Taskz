@@ -13,6 +13,13 @@
 
     </declare-styleable>
 
+    <declare-styleable name="SelectableButton">
+        <attr name="label" format="string"/>
+        <attr name="prefix" format="reference"/>
+        <attr name="isSelected" format="boolean"/>
+
+    </declare-styleable>
+
     <declare-styleable name="LoadableButton">
         <attr name="loading" format="boolean"/>
         <attr name="text" format="string"/>

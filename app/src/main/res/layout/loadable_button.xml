@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:minHeight="55dip"
+    android:minHeight="64dip"
     android:minWidth="88dip"
     android:orientation="vertical"
     android:gravity="center"
@@ -17,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOGIN"
+        android:textSize="@dimen/medium_font_size"
         android:fontFamily="@font/poppins_semibold"
         android:background="@android:color/transparent"
         android:textColor="@color/white"

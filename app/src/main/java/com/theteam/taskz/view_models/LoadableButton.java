@@ -23,6 +23,7 @@ public class LoadableButton extends LinearLayout {
     private LottieAnimationView lottie;
     private LinearLayout root_layout;
     private TextView button_text;
+
     public LoadableButton(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
@@ -57,14 +58,17 @@ public class LoadableButton extends LinearLayout {
 
 
 
-
     public void setText(String text){
         button_text.setText(text);
     }
+    /// To make the button start loading
     public void startLoading(){
         button_text.setVisibility(View.GONE);
         lottie.setVisibility(View.VISIBLE);
     }
+
+    /// To make the button start loading
+
     public void stopLoading(){
         button_text.setVisibility(View.VISIBLE);
         lottie.setVisibility(View.GONE);
