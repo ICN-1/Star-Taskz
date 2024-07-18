@@ -2,14 +2,17 @@ package com.theteam.taskz;
 
 import android.app.UiModeManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CompoundButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -21,6 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
     SharedPreferences themePreferences;
     SharedPreferences.Editor editThemePreference;
     UiModeManager uiModeManager;
+    CardView goToEditProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,14 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         dark_mode_switch = findViewById(R.id.dark_mode_switch);
+        goToEditProfile = findViewById(R.id.goToEditProfile);
+
+        goToEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SettingsActivity.this, EditProfile.class));
+            }
+        });
 
         uiModeManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
         systemTheme = uiModeManager.getNightMode();

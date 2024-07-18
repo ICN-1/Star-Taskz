@@ -302,6 +302,7 @@
             android:textSize="18dp"/>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/goToEditProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -310,11 +311,11 @@
             app:cardCornerRadius="50dp">
 
             <ImageView
-                android:layout_width="20dp"
+                android:layout_width="19dp"
                 android:layout_height="20dp"
                 android:layout_margin="11dp"
                 android:src="@drawable/forward_icon"
-                app:tint="@color/themeColor"/>
+                app:tint="@color/themeColor" />
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 

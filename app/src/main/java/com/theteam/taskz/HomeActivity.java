@@ -68,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
         views.add(new TasksFragment());
         views.add(new CalendarFragment());
         views.add(new AIFragment());
-        views.add(new FocusFragment());
+        views.add(new ViewProfileActivity());
 
         // View initialization
         bottomNavigationView = findViewById(R.id.bottom_nav_bar);
