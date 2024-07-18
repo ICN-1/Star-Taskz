@@ -1,40 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GroupDetailsActivity"
-    android:orientation="vertical">
+    tools:context=".GroupDetailsActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="30dp">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/back_button_icon"
+                app:tint="@color/themeColor"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:text="Edit"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="@color/themeColor"/>
+        </RelativeLayout>
+
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/back_button_icon"
-            app:tint="@color/themeColor"/>
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/circular_profile_background"
+            android:background="@drawable/circle_background"
+            android:clipToOutline="true"
+            android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:text="Edit"
+            android:layout_marginTop="10dp"
+            android:text="We Are Coders"
+            android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="@color/themeColor"/>
-    </RelativeLayout>
-    
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"/>
-</LinearLayout>
+            android:textSize="22dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum dolor sit amet"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_gravity="center"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp">
+
+            <ImageView
+                android:id="@+id/notifications_icon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/notifications_icon_2"
+                app:tint="@color/themeColor"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/notifications_icon"
+                android:layout_marginStart="20dp"
+                android:textColor="@color/black"
+                android:layout_centerVertical="true"
+                android:text="Lorem ipsum dolor sit amet"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_gravity="center"/>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/dark_mode_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
+                app:thumbTint="@color/themeColor"
+                app:trackTint="@color/tertiaryDark"
+                android:checked="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:text="People In The Room (71)"
+            android:textStyle="bold"
+            android:textSize="16dp"/>
+
+        <!--   The View for this Recyler is  "group_details_recycler_view_holder"   -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/groupDetailsRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/themeColor"
+        app:tint="@color/white"
+        android:src="@drawable/add_icon"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
