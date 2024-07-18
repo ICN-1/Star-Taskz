@@ -78,7 +78,7 @@
             android:layout_toEndOf="@+id/dark_mode_icon"
             android:text="Dark Mode"
             android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:textSize="18dp"/>
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/dark_mode_switch"
